@@ -13,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue
 class GradleCompatibilityTest {
 
     @ParameterizedTest
-    @ValueSource(strings = ['4.10.3', '5.6.4', '6.2'])
+    @ValueSource(strings = ['4.10.3', '5.6.4', '6.1'])
     void 'Gradle compatibility test'(String gradleVersion) {
         String task = ':generateCucumberReports'
-        String projectDir = 'src/functionalTest/resources'
+        String projectDir = System.getProperty('user.dir')+'/target'
 
         GradleRunner runner = GradleRunner.create()
                 .withGradleVersion(gradleVersion)
@@ -33,7 +33,7 @@ class GradleCompatibilityTest {
         assertEquals(task, result.tasks.get(0).path)
         assertEquals(SUCCESS, result.tasks.get(0).outcome)
 
-        String reportFilePath = projectDir + '/output/generated-reports/cucumber-html-reports/overview-features.html'
+        String reportFilePath = projectDir + '/cucumber-report/generated-reports/cucumber-html-reports/overview-features.html'
         assertTrue(new File(reportFilePath).exists())
     }
 }

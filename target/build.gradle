@@ -1,0 +1,13 @@
+plugins {
+    id 'com.github.spacialcircumstances.gradle-cucumber-reporting'
+    id 'base'
+}
+
+clean.doFirst {
+    delete "$projectDir/cucumber-report"
+}
+
+cucumberReports {
+    reports = files("cucumber.json")
+    outputDir = file("cucumber-report/generated-reports")
+}

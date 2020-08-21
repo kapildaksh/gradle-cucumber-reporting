@@ -2,7 +2,7 @@ package com.github.spacialcircumstances.gradle
 
 import org.gradle.api.file.FileCollection
 
-class ReportsPluginExtension {
+ class ReportsPluginExtension {
     String projectNameOverride
     File outputDir
     String directorySuffix
